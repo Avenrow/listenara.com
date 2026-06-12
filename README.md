@@ -72,6 +72,6 @@ After GitHub Pages provisions the certificate, enable HTTPS enforcement.
 
 ## Still Pending
 
-- Replace the disabled PayPal checkout button in `download.html` with the live US$29 PayPal checkout URL.
+- Deploy the updated PayPal checkout Worker/site flow and run one end-to-end purchase test.
 - First release screenshot or app preview image.
 - Enable HTTPS after the GitHub Pages certificate is ready.

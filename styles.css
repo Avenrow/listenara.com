@@ -280,6 +280,26 @@ h3 {
   font-weight: 650;
 }
 
+.paypal-button-container {
+  max-width: 420px;
+  min-height: 54px;
+  margin-top: 18px;
+}
+
+.checkout-status {
+  min-height: 24px;
+  margin: 14px 0 0;
+  font-weight: 650;
+}
+
+.checkout-status[data-tone="success"] {
+  color: var(--green);
+}
+
+.checkout-status[data-tone="error"] {
+  color: var(--rose);
+}
+
 code {
   padding: 2px 5px;
   border-radius: 5px;

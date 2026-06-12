@@ -38,9 +38,12 @@
 
     <section id="buy" class="support-box">
       <h2>Buy License</h2>
-      <p>A one-time personal license is US$29. PayPal checkout should email your license key automatically after payment.</p>
-      <p class="launch-note">PayPal checkout link pending: replace this disabled button with the live PayPal checkout URL before public launch.</p>
-      <a class="button disabled" aria-disabled="true">PayPal Checkout Pending</a>
+      <p>A one-time personal license is US$29. PayPal checkout emails your license key automatically after payment.</p>
+      <div id="paypal-button-container" class="paypal-button-container" aria-label="PayPal checkout for Listenara Personal License"></div>
+      <p id="checkout-status" class="checkout-status" role="status">Loading PayPal checkout...</p>
+      <noscript>
+        <p class="launch-note">PayPal checkout requires JavaScript. Email listenara.app@gmail.com for manual license help.</p>
+      </noscript>
     </section>
 
     <section class="support-box">
@@ -59,5 +62,96 @@
       <a href="support.html">Support</a>
     </nav>
   </footer>
+  <script>
+    (() => {
+      const workerBaseURL = "https://listenara-license-worker.listenara-app.workers.dev";
+      const status = document.getElementById("checkout-status");
+      const container = document.getElementById("paypal-button-container");
+
+      function setStatus(message, tone = "") {
+        status.textContent = message;
+        status.dataset.tone = tone;
+      }
+
+      async function fetchJSON(path, options = {}) {
+        const response = await fetch(`${workerBaseURL}${path}`, {
+          ...options,
+          headers: {
+            "Content-Type": "application/json",
+            ...(options.headers || {})
+          }
+        });
+        const body = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(body.message || "PayPal checkout is unavailable.");
+        }
+        return body;
+      }
+
+      function loadPayPalSDK(clientID, currency, intent) {
+        return new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          const params = new URLSearchParams({
+            "client-id": clientID,
+            currency,
+            intent,
+            components: "buttons"
+          });
+          script.src = `https://www.paypal.com/sdk/js?${params.toString()}`;
+          script.async = true;
+          script.onload = resolve;
+          script.onerror = () => reject(new Error("PayPal checkout could not load."));
+          document.body.appendChild(script);
+        });
+      }
+
+      async function startCheckout() {
+        try {
+          const config = await fetchJSON("/paypal/client-config");
+          await loadPayPalSDK(config.clientID, config.currency || "USD", config.intent || "capture");
+          if (!window.paypal || !window.paypal.Buttons) {
+            throw new Error("PayPal checkout could not start.");
+          }
+          await window.paypal.Buttons({
+            style: {
+              layout: "vertical",
+              color: "gold",
+              shape: "rect",
+              label: "pay"
+            },
+            createOrder: async () => {
+              setStatus("Opening secure PayPal checkout...");
+              const order = await fetchJSON("/paypal/create-order", {
+                method: "POST",
+                body: "{}"
+              });
+              return order.id;
+            },
+            onApprove: async (data) => {
+              setStatus("Capturing payment...");
+              await fetchJSON("/paypal/capture-order", {
+                method: "POST",
+                body: JSON.stringify({ orderID: data.orderID })
+              });
+              setStatus("Payment complete. Your Listenara license key will be emailed automatically.", "success");
+            },
+            onCancel: () => {
+              setStatus("Checkout canceled. No payment was taken.");
+            },
+            onError: (error) => {
+              console.error(error);
+              setStatus("PayPal checkout failed. Please try again or email listenara.app@gmail.com.", "error");
+            }
+          }).render(container);
+          setStatus("Use PayPal to buy a Listenara Personal License for US$29.");
+        } catch (error) {
+          console.error(error);
+          setStatus("PayPal checkout is not available yet. Email listenara.app@gmail.com for manual license help.", "error");
+        }
+      }
+
+      startCheckout();
+    })();
+  </script>
 </body>
 </html>
