@@ -29,6 +29,7 @@ The folder includes:
 - `install.html`
 - `terms.html`
 - `download.html`
+- `latest.json`
 - `404.html`
 - `assets/listenara-icon.png`
 
