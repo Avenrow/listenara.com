@@ -31,13 +31,17 @@
       <li>No account sign-in is required in v1.</li>
       <li>No analytics are built into the app.</li>
       <li>The browser preview runs on <code>127.0.0.1</code>.</li>
-      <li>License activation is offline-verifiable inside the app.</li>
+      <li>License activation uses one online request, then normal activated use works offline.</li>
       <li>Update checks only request <code>latest.json</code> from listenara.com.</li>
     </ul>
     <p>AI assistants can control Listenara locally. Transcript text may enter an assistant chat only when you ask that assistant to read, summarize, rewrite, or otherwise process the text.</p>
     <section class="support-box">
       <h2>Update Checks</h2>
       <p>Listenara may check listenara.com for a small public version file and show a one-time prompt when a newer version is available. The update check does not send audio, transcripts, exports, license keys, or account data.</p>
+    </section>
+    <section class="support-box">
+      <h2>License Activation</h2>
+      <p>When you activate a paid key, Listenara contacts the license server once to enforce the 3-Mac personal activation limit. The request sends the license key, app version, platform, and an anonymous local device hash. It does not send audio, transcripts, exports, saved sessions, or local file names.</p>
     </section>
     <section class="support-box">
       <h2>Payment Boundary</h2>
