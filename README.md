@@ -2,6 +2,15 @@
 
 Static GitHub Pages site for `https://listenara.com`.
 
+## Current Status
+
+- Public website repo: `Avenrow/listenara.com`.
+- Custom domain: `listenara.com` is configured in GitHub Pages.
+- Porkbun DNS: apex `A` records and `www` CNAME are pointed to GitHub Pages.
+- HTTP: `http://listenara.com` is serving from GitHub Pages.
+- HTTPS: pending GitHub Pages certificate provisioning; enable HTTPS after GitHub stops returning `The certificate does not exist yet`.
+- Final public history cleanup: defer deleting/recreating the public website repo until final icon, payment, download, and launch assets are approved.
+
 ## Publish Source
 
 Recommended setup:
@@ -36,11 +45,9 @@ cd ../listenara.com
 git status --short
 ```
 
-## Porkbun DNS Later
+## Porkbun DNS
 
-Do not point DNS at GitHub Pages until the GitHub Pages site has the custom domain configured.
-
-When ready, use Porkbun DNS records like this:
+The current Porkbun DNS should use records like this:
 
 ```text
 Type   Host   Answer
@@ -61,10 +68,10 @@ AAAA   @      2606:50c0:8002::153
 AAAA   @      2606:50c0:8003::153
 ```
 
-After DNS resolves in GitHub Pages, enable HTTPS.
+After GitHub Pages provisions the certificate, enable HTTPS enforcement.
 
 ## Still Pending
 
-- Upload `Listenara-v1.0.0.dmg` and `Listenara-v1.0.0.dmg.sha256` to the public website repo's GitHub Releases.
 - Replace the disabled PayPal checkout button in `download.html` with the live US$29 PayPal checkout URL.
 - First release screenshot or app preview image.
+- Enable HTTPS after the GitHub Pages certificate is ready.
