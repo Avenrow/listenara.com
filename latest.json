@@ -5,7 +5,7 @@
   "downloadPageURL": "https://listenara.com/download.html",
   "downloadURL": "https://github.com/Avenrow/listenara.com/releases/download/v1.0.0/Listenara-v1.0.0.dmg",
   "checksumURL": "https://github.com/Avenrow/listenara.com/releases/download/v1.0.0/Listenara-v1.0.0.dmg.sha256",
-  "sha256": "ad57b2a83cdb1b037c316676ec10fd0296127fec65f129191c5145e814a3df52",
+  "sha256": "bf878014dfb04460dbebbd2401098272fbe915b92a5c68caea8c8c4432d91b77",
   "releaseNotes": "Initial Listenara v1 release with local transcription, local browser preview, 60 trial minutes, one-time license activation, and a 3-Mac personal activation limit.",
   "publishedAt": "2026-06-12",
   "minimumSystemVersion": "macOS 14"
