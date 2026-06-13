@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Integration - Listenara</title>
+  <meta name="description" content="Use Listenara with Codex, Claude Code, and other local AI agents.">
+  <link rel="icon" href="assets/listenara-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Listenara home">
+      <img src="assets/listenara-icon.png" alt="" width="34" height="34">
+      <span>Listenara</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="download.html">Download</a>
+      <a href="install.html">Install</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <p class="eyebrow">AI Integration</p>
+    <h1>Use Listenara from local AI agents.</h1>
+    <p>Listenara is the Mac app. The AI skill is an optional adapter that tells Codex, Claude Code, and similar local agents how to open and control the local preview.</p>
+
+    <section class="support-box">
+      <h2>What "run Listenara" means</h2>
+      <p>In an AI workflow, "run Listenara" means the agent runs <code>listenara preview --json</code>, reads the returned <code>previewURL</code>, and opens that local URL inside the AI tool's own preview or browser when available.</p>
+      <p>The AI workflow should not open Safari or Chrome automatically unless you ask. It should not start recording automatically.</p>
+    </section>
+
+    <section class="support-box">
+      <h2>What you need</h2>
+      <ul class="plain-list">
+        <li>Install <code>Listenara.app</code> on your Mac.</li>
+        <li>Use an AI tool that can run local commands.</li>
+        <li>For the best experience, use an AI tool that can open localhost previews.</li>
+      </ul>
+      <p>If the AI tool cannot open local previews, it should show the local URL so you can open it yourself.</p>
+    </section>
+
+    <section class="support-box">
+      <h2>Command contract</h2>
+      <p>Agents should prefer <code>listenara</code> on <code>PATH</code>. If that is unavailable, they can use <code>/Applications/Listenara.app/Contents/MacOS/listenara</code>.</p>
+      <p>Inside the source repo, the development command is <code>.build/release/listenara</code>.</p>
+    </section>
+
+    <section class="support-box">
+      <h2>Privacy boundary</h2>
+      <p>Launching Listenara, opening the local preview, and running local Listenara commands keeps transcription and translation local on your Mac. If you ask an AI assistant to read, summarize, rewrite, or transform transcript text, that text may enter that assistant's chat context.</p>
+    </section>
+
+    <section class="support-box">
+      <h2>Codex, Claude, and other agents</h2>
+      <p>The shared Listenara skill works through the same local command contract. Codex and Claude Code use small adapter files, while other local agents can use the shared skill instructions if they support local shell commands and localhost previews.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>Listenara by Avenrow Labs</span>
+    <nav aria-label="Footer navigation">
+      <a href="./">Home</a>
+      <a href="download.html">Download</a>
+      <a href="install.html">Install</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </footer>
+</body>
+</html>

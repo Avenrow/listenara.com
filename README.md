@@ -25,6 +25,7 @@ The folder includes:
 - `.nojekyll`
 - `index.html`
 - `privacy.html`
+- `ai.html`
 - `support.html`
 - `install.html`
 - `terms.html`
@@ -75,4 +76,5 @@ After GitHub Pages provisions the certificate, enable HTTPS enforcement.
 
 - Deploy the updated PayPal checkout Worker/site flow and run one end-to-end purchase test.
 - First release screenshot or app preview image.
+- Upload the public AI skills ZIP after review if advertising AI integration at launch.
 - Enable HTTPS after the GitHub Pages certificate is ready.
