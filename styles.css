@@ -126,6 +126,28 @@ h3 {
   font-size: clamp(18px, 2.2vw, 24px);
 }
 
+.hero-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-list li {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .actions,
 .product-actions {
   display: flex;
@@ -298,6 +320,10 @@ h3 {
 
 .checkout-status[data-tone="error"] {
   color: var(--rose);
+}
+
+.legal-note {
+  font-size: 14px;
 }
 
 code {
